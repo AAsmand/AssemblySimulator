@@ -1,0 +1,149 @@
+﻿@model Simulator.Models.SimModel
+@{
+    ViewData["Title"] = "Assembelly Simulator";
+}
+<div class="">
+    @if (ViewBag.message != null)
+    {
+        <div class="alert alert-danger text-right ">@((string)ViewBag.message)</div>
+    }
+    @if (Model.line == "HLT")
+    {
+        <div class="alert alert-warning text-right ">اجرای کد به پایان رسید در صورت نیاز به اجرای دوباره بر روی دکمه کامپایل کلیک نمایید</div>
+    }
+    <div class="row">
+        <div class="col-4">
+            <form method="post" asp-controller="Home" asp-action="Compile">
+                <textarea class="form-control" rows="20" style="width:100%" name="m" id="m" placeholder="Write Codes Here...">@Model.code</textarea>
+                <input type="submit" class="btn btn-success col-md-6" style="padding:3%;margin-top:2%" value="Compile!">
+            </form>
+        </div>
+        <div class="col-8 p-md-2">
+            <div class="row">
+                <div class="input-group mb-2 mr-sm-2 col-lg-5">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">Ac</div>
+                    </div>
+                    <input asp-for="ac" type="text" class="form-control" placeholder="Ac Register">
+                </div>
+
+                <div class="input-group mb-2 mr-sm-2 col-lg-5">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">Pc</div>
+                    </div>
+                    <input asp-for="pc" type="text" class="form-control" placeholder="Pc Register">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="input-group mb-2 mr-sm-2 col-lg-5">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">IR</div>
+                    </div>
+                    <input type="text" class="form-control" asp-for="ir" placeholder="IR Register">
+                </div>
+
+                <div class="input-group mb-2 mr-sm-2 col-lg-5">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">DECODE</div>
+                    </div>
+                    <input type="text" class="form-control" asp-for="decode" placeholder="DECODE Register">
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-group mb-2 mr-sm-2 col-lg-5">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">DR</div>
+                    </div>
+                    <input type="text" class="form-control" asp-for="dr" placeholder="DR Register">
+                </div>
+
+                <div class="input-group mb-2 mr-sm-2 col-lg-5">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">AR</div>
+                    </div>
+                    <input type="text" class="form-control" asp-for="ar" placeholder="AR Register">
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-group mb-2 mr-sm-2 col-lg-5">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">I</div>
+                    </div>
+                    <input type="text" class="form-control" asp-for="i" placeholder="I Register">
+                </div>
+
+                <div class="input-group mb-2 mr-sm-2 col-lg-5">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">E</div>
+                    </div>
+                    <input type="text" class="form-control" asp-for="e" placeholder="E Register">
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-group mb-2 mr-sm-2 col-lg-5">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">IEN</div>
+                    </div>
+                    <input type="text" class="form-control" asp-for="ien" placeholder="IEN Register">
+                </div>
+
+                <div class="input-group mb-2 mr-sm-2 col-lg-5">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">FGO</div>
+                    </div>
+                    <input type="text" class="form-control" asp-for="fgo" placeholder="FGO Register">
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-group mb-2 mr-sm-2 col-lg-5">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">FGI</div>
+                    </div>
+                    <input type="text" class="form-control" asp-for="fgi" placeholder="FGI Register">
+                </div>
+
+                <div class="input-group mb-2 mr-sm-2 col-lg-5">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">SC</div>
+                    </div>
+                    <input type="text" class="form-control" asp-for="sc" placeholder="SC Register">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="input-group mb-2 mr-sm-2 col-lg-5">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">OUTR</div>
+                    </div>
+                    <input type="text" class="form-control" asp-for="outr" placeholder="OUTR Register">
+                </div>
+
+                <div class="input-group mb-2 mr-sm-2 col-lg-5">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">OPCODE</div>
+                    </div>
+                    <input type="text" class="form-control" asp-for="opcode" placeholder="OPCODE Register">
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-group mb-2 mr-sm-2 col-lg-10">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">INPR</div>
+                    </div>
+                    <input type="text" class="form-control" asp-for="inpr" placeholder="INPR Register">
+                </div>
+            </div>
+            <div>
+                <p>Current Step : <input asp-for="line" /><p />
+            </div>
+            <div class="row">
+                <form asp-controller="Home" method="get" class="col-12">
+                    <input type="submit" class="btn btn-info col-md-3" style="padding:1%;margin:2%" value="Finall Step" asp-action="All" disabled=@((int)ViewBag.hlt==1||(bool)ViewBag.Run==false?"disabled":null)>
+                    <input type="submit" class="btn btn-outline-danger col-md-3" style="padding:1%;margin:2%" value="Reset" asp-action="Stop">
+                    <input type="submit" class="btn btn-info col-md-3" style="padding:1%;margin:2%" value="Next" asp-action="Next" disabled=@((int)ViewBag.hlt==1||(bool)ViewBag.Run==false?"disabled":null)>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
